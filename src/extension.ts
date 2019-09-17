@@ -25,6 +25,14 @@ export function activate(context: vscode.ExtensionContext) {
 		});
 	}));
 
+	context.subscriptions.push(vscode.commands.registerCommand(
+		'extension.mock.toggleSkippingFile', (url) => sendCustomRequest('toggleSkippingFile', url)
+	));
+
+	context.subscriptions.push(vscode.commands.registerCommand(
+		'extension.mock.dummy', (url) => sendCustomRequest('dummy', url)
+	));
+
 	// register a configuration provider for 'mock' debug type
 	const provider = new MockConfigurationProvider();
 	context.subscriptions.push(vscode.debug.registerDebugConfigurationProvider('mock', provider));
@@ -66,6 +74,9 @@ export function deactivate() {
 	// nothing to do
 }
 
+function sendCustomRequest(type: string, data: any) {
+	vscode.window.showInformationMessage(`${type} was called...`);
+}
 
 class MockConfigurationProvider implements vscode.DebugConfigurationProvider {
 

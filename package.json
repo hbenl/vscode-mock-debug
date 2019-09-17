@@ -63,6 +63,30 @@
 				"language": "markdown"
 			}
 		],
+		"commands": [
+			{
+				"command": "extension.mock.toggleSkippingFile",
+				"title": "Toggle skipping this file"
+			},
+			{
+				"command": "extension.mock.dummy",
+				"title": "Call dummy"
+			}
+		],
+		"menus": {
+			"debug/callstack/context": [
+				{
+					"command": "extension.mock.toggleSkippingFile",
+					"when": "inDebugMode && debugType == 'mock' && callStackItemType == 'stackFrame'"
+				}
+			]
+		},
+		"commandPalette": [
+			{
+			  "command": "extension.mock.toggleSkippingFile",
+			  "when": "false"
+			}
+		],
 		"debuggers": [
 			{
 				"type": "mock",
